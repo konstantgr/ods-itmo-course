@@ -1,9 +1,8 @@
-import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import json
 from pathlib import Path
-from preprocessing.message import Message, messages_to_dataframe
+from preprocessing.chat_preprocessing.message import Message, messages_to_dataframe
 
 
 def plot_timeseries(df):
