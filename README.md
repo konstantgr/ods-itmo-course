@@ -1,4 +1,4 @@
-## Conflicts Recognition in Chat
+# Conflicts Recognition in Chat
 
 The working environment is a crucial aspect that determines employee satisfaction. Conflict situations can arise due to
 political differences, leading to strained relationships within the team and even resulting in someone losing their job.
@@ -13,19 +13,19 @@ chat that discusses important organizational issues would typically have a neutr
 By using this tool, companies can improve the overall working atmosphere and promote better employee satisfaction by
 reducing conflict situations in the workplace.
 
-# Data
+## Data
 
 As a data will be used several chat histories on the russian and english languages from the open source group chats.
 Also, a separate source, I will use
 comments below posts in the Telegram channels. Before using the emotion
 
-# Emotion Detection
+## Emotion Detection
 
 The base for the emotion recognition will be
 pretrained [T5 model](https://huggingface.co/mrm8488/t5-base-finetuned-emotion).
 Before using, this model will be fine-tuned using MELD dataset, which connects conversations and emotions.
 
-# Anomaly Detection
+## Anomaly Detection
 
 Formally, the problem can be assumed as a looking for anomalies in the time-series. In our case, the anomaly will be a
 sharp deterioration of the emotional context in the chat - that is, the theoretical formation of a conflict.
@@ -40,7 +40,38 @@ to carefully pre-create a selection.To solve a simple problem, you can use sever
 series using statistical methods, or first perform clustering of the time series in order to more accurately determine
 the features of the cluster of interest.
 
-# Visualization
+## Visualization
 
 For visualization, a [streamlit](https://streamlit.io) webpage will be used, which will broadcast the "mood" time series
 in chats.
+
+## Structure of The Project
+```bash
+├── README.md
+├── anomaly_detection
+│   ├── __init__.py
+│   ├── clusterisation.py
+│   ├── metrics.py
+│   └── statistical_heuristics.py
+├── emotion_detection
+│   ├── __init__.py
+│   ├── datamodules.py
+│   ├── model.py
+│   └── text_to_emotion.py
+├── poetry.lock
+├── preprocessing
+│   ├── __init__.py
+│   ├── chat_preprocessing
+│   │   ├── __init__.py
+│   │   ├── chat_preprocessing.py
+│   │   └── message.py
+│   └── text_preprocessing
+│       ├── __init__.py
+│       ├── embedding.py
+│       └── translation.py
+├── pyproject.toml
+└── streamlit_app
+    ├── app.py
+    ├── create_charts.py
+    └── visualisation_utils.py
+```
